@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Profiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0e4ff;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            border: 4px solid #ffa1e3;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffa1e3;
+            text-shadow: 2px 2px #ffc1f3;
+        }
+        .profile-list {
+            list-style: none;
+            padding: 0;
+        }
+        .profile-list li {
+            padding: 10px;
+            border-bottom: 2px solid #ffa1e3;
+        }
+        .profile-list a {
+            text-decoration: none;
+            color: #ff69b4;
+            font-weight: 700;
+        }
+        .profile-list a:hover {
+            color: #ff1493;
+        }
+        .back-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffa1e3;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #ff69b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Search Profiles</div>
+        <ul class="profile-list">
+            {% for profile in profiles %}
+            <li><a href="{{ url_for('view_profile', username=profile.username) }}">{{ profile.username }}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
