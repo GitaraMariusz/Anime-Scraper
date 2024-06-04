@@ -24,14 +24,26 @@ docker push docker-username/flask-app:latest
 ```txt
 minikube start
 ```
-6. Apply the yaml's
+6. Creating catalog for Redis
+```txt
+minikube ssh
+sudo mkdir -p /mnt/data/redis
+sudo chmod 777 /mnt/data/redis
+exit
+```
+7. Apply the yaml's
 ```txt
 minikube kubectl -- apply -f scraper-service.yaml    
 minikube kubectl -- apply -f flask-app-deployment.yaml    
 minikube kubectl -- apply -f redis-deployment.yaml  
-minikube kubectl -- apply -f scraper-deployment.yaml       
+minikube kubectl -- apply -f scraper-deployment.yaml 
+minikube kubectl -- apply -f redis-service.yaml      
 ```
-7. Get url
+8. Get url
+```txt
+minikube service flask-app-service  
+```
+9. Get url
 ```txt
 minikube service flask-app-service  
 ```
