@@ -37,7 +37,7 @@ minikube kubectl -- apply -f scraper-deployment.yaml
 ```
 8. Get url
 ```txt
-minikube kubectl -- service flask-app-service  
+minikube service flask-app-service  
 ```
 
 
