@@ -4,7 +4,7 @@ The project is designed for scraping anime from MAL with simple UI
 
 1. Copy the repository
 ```txt
-git clone https://github.com/GitaraMariusz/Anime-Scraper.git
+git clone https://github.com/GitaraMariusz/Anime-Scraper-Kubernetes.git
 ```
 2. Log in to docker
 ```txt
