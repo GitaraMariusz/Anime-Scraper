@@ -154,7 +154,7 @@ async def scrape_anime_list(num_pages, start_page=0):
 
     async with aiohttp.ClientSession() as session:
         anime_list = []
-        for i in range(0, len(urls), 5):  # Fetch in batches of 5
+        for i in range(0, len(urls), 5): 
             current_urls = urls[i:i + 5]
             html_pages = await fetch_all(current_urls, session)
             tasks = [parse_anime_page(html, session) for html in html_pages if html]
