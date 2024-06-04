@@ -24,18 +24,14 @@ docker push docker-username/flask-app:latest
 ```txt
 minikube start
 ```
-6. Start minikube
-```txt
-minikube start
-```
-7. Apply the yaml's
+6. Apply the yaml's
 ```txt
 minikube kubectl -- apply -f scraper-service.yaml    
 minikube kubectl -- apply -f flask-app-deployment.yaml    
 minikube kubectl -- apply -f redis-deployment.yaml  
 minikube kubectl -- apply -f scraper-deployment.yaml       
 ```
-8. Get url
+7. Get url
 ```txt
 minikube service flask-app-service  
 ```
