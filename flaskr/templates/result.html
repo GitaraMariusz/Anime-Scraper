@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrape Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0e4ff;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            border: 4px solid #ffa1e3;
+            overflow-y: auto;
+            height: 90%;
+        }
+        .back-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffa1e3;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #ff69b4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffa1e3;
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-bar form {
+            display: inline-block;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 2px solid #ffa1e3;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-bar input[type="text"]:focus {
+            border-color: #ff69b4;
+        }
+        .search-bar button {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ffa1e3;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #ff69b4;
+            transform: scale(1.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 2px solid #ffa1e3;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffa1e3;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+        .pagination a {
+            color: #ffa1e3;
+            padding: 8px 12px; 
+            text-decoration: none;
+            border: 2px solid #ffa1e3;
+            margin: 2px; 
+            border-radius: 8px;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+        .pagination a.active {
+            background-color: #ffa1e3;
+            color: white;
+            border: 2px solid #ffa1e3;
+        }
+        .advanced-click{
+            display: block;
+            margin: 40px;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffa1e3;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .advanced-click:hover {
+            background-color: #ff69b4;
+            transform: scale(1.05);
+        }
+        .filtering {
+            background-color: #ffa1e3;
+            margin-bottom: 5%;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 10px;
+            width: 40%;
+            margin-left: 30%;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .filtering:hover {
+            background-color: #ff69b4;
+            transform: scale(1.05);
+        }
+        .advanced-search-content {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .advanced-search-content label {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 2px solid #ffa1e3;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .advanced-search-content label:hover {
+            background-color: #f0e4ff;
+            border-color: #ff69b4;
+        }
+    </style>
+      <script>
+        function toggleAdvancedSearch() {
+            const content = document.querySelector('.advanced-search-content');
+            const filterButton = document.querySelector('.filtering');
+            const isVisible = content.style.display === 'flex';
+            content.style.display = isVisible ? 'none' : 'flex';
+            filterButton.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function sortTable(column) {
+            const urlParams = new URLSearchParams(window.location.search);
+            let sort_by = urlParams.get('sort_by');
+            let sort_order = urlParams.get('sort_order');
+
+            if (sort_by === column) {
+                sort_order = (sort_order === 'asc') ? 'desc' : 'asc';
+            } else {
+                sort_by = column;
+                sort_order = 'asc';
+            }
+
+            urlParams.set('sort_by', sort_by);
+            urlParams.set('sort_order', sort_order);
+            window.location.search = urlParams.toString();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">Back to Home</a>
+        <h1>Scraped Anime List</h1>
+        <div class="search-bar">
+            <form action="/search" method="post">
+                <input type="text" name="search_query" placeholder="Search for an anime..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="advanced-search">
+            <h3 class="advanced-click" onclick="toggleAdvancedSearch()">Advanced Searching</h3>
+            <form action="/filter" method="post">
+                <div class="advanced-search-content">
+                    <label><input type="checkbox" name="genres" value="Action"> Action</label>
+                    <label><input type="checkbox" name="genres" value="Adventure"> Adventure</label>
+                    <label><input type="checkbox" name="genres" value="Comedy"> Comedy</label>
+                    <label><input type="checkbox" name="genres" value="Drama"> Drama</label>
+                    <label><input type="checkbox" name="genres" value="Suspense"> Suspense</label>
+                    <label><input type="checkbox" name="genres" value="Supernatural"> Supernatural</label>
+                    <label><input type="checkbox" name="genres" value="Sports"> Sports</label>
+                    <label><input type="checkbox" name="genres" value="Horror"> Horror</label>
+                    <label><input type="checkbox" name="genres" value="Mystery"> Mystery</label>
+                    <label><input type="checkbox" name="genres" value="Romance"> Romance</label>
+                    <label><input type="checkbox" name="genres" value="Sci-Fi"> Sci-Fi</label>
+                    <label><input type="checkbox" name="genres" value="Gourmet"> Gourmet</label>
+                    <label><input type="checkbox" name="genres" value="Hentai"> Hentai</label>
+                    <label><input type="checkbox" name="genres" value="Ecchi"> Ecchi</label>
+                    <label><input type="checkbox" name="genres" value="Erotica"> Erotica</label>
+                </div>
+                <button class="filtering" type="submit" style="display: none;">Filter</button>
+            </form>
+        </div>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable('title')">Title</th>
+                    <th onclick="sortTable('user_score')">User Score</th>
+                    <th onclick="sortTable('rank')">Rank</th>
+                    <th onclick="sortTable('type')">Type</th>
+                    <th onclick="sortTable('episodes')">Episodes</th>
+                    <th onclick="sortTable('aired_date')">Aired Date</th>
+                    <th onclick="sortTable('members')">Members</th>
+                    <th>Genres</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for anime in anime_list %}
+                    <tr>
+                        <td><a href="{{ url_for('anime_details', title=anime.title) }}">{{ anime.title }}</a></td>
+                        <td>{{ anime.user_score }}</td>
+                        <td>{{ anime.rank }}</td>
+                        <td>{{ anime.type }}</td>
+                        <td>{{ anime.episodes }}</td>
+                        <td>{{ anime.aired_date }}</td>
+                        <td>{{ anime.members }}</td>
+                        <td>{{ ', '.join(anime.genres) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="?page={{ page - 1 }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}{% if sort_order %}&sort_order={{ sort_order }}{% endif %}">Previous</a>
+            {% endif %}
+            {% for p in range(1, total_pages + 1) %}
+                <a href="?page={{ p }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}{% if sort_order %}&sort_order={{ sort_order }}{% endif %}" class="{% if p == page %}active{% endif %}">{{ p }}</a>
+            {% endfor %}
+            {% if page < total_pages %}
+                <a href="?page={{ page + 1 }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}{% if sort_order %}&sort_order={{ sort_order }}{% endif %}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

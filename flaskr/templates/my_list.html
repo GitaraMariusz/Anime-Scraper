@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Anime List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0e4ff;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            border: 4px solid #ffa1e3;
+            text-align: center;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffa1e3;
+            text-shadow: 2px 2px #ffc1f3;
+        }
+        .anime-list {
+            list-style: none;
+            padding: 0;
+        }
+        .anime-list li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px solid #ffa1e3;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .back-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffa1e3;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-button:hover {
+            background-color: #ff69b4;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">My Anime List</div>
+        <ul class="anime-list">
+            {% for anime in anime_list %}
+            <li>
+                <h3>{{ anime.title }}</h3>
+                <p>Status: {{ anime.status }}</p>
+                <p>Rating: {{ anime.rating }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
