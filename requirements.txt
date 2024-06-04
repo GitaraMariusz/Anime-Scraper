@@ -1,7 +1,0 @@
-flask
-flask-login
-werkzeug
-redis
-beautifulsoup4
-aiohttp
-requests
