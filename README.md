@@ -14,6 +14,7 @@ Make sure you have the following applications installed:
 1. **Clone the Repository**
     ```sh
     git clone https://github.com/GitaraMariusz/Anime-Scraper-Kubernetes.git
+    cd Anime-Scraper-Kubernetes
     ```
     **Note:** After cloning, it is recommended to delete all GitHub-related files as they can disturb the workflow of the application.
 
@@ -57,7 +58,7 @@ Make sure you have the following applications installed:
     minikube kubectl -- apply -f redis-service.yaml
     ```
 
-8. **Check staus of the Pods**
+8. **Get status of the Pods**
     ```sh
     minikube kubectl -- get pods
     ```
@@ -71,4 +72,4 @@ Make sure you have the following applications installed:
 
 Once all the services are up and running, you can access the Flask app through the URL provided by Minikube.
 
-## 
+##
