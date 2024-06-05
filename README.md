@@ -2,6 +2,13 @@
 
 The project is designed for scraping anime from MAL with a simple UI.
 
+## Prerequisites
+
+Make sure you have the following applications installed:
+
+- [Docker](https://www.docker.com/get-started)
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+
 ## Installation Instructions
 
 1. **Clone the Repository**
@@ -50,7 +57,7 @@ The project is designed for scraping anime from MAL with a simple UI.
     minikube kubectl -- apply -f redis-service.yaml
     ```
 
-8. **Check status of the Pods**
+8. **Check staus of the Pods**
     ```sh
     minikube kubectl -- get pods
     ```
