@@ -58,12 +58,13 @@ Make sure you have the following applications installed:
     minikube kubectl -- apply -f redis-service.yaml
     ```
 
-8. **Get status of the Pods**
+8. **Check that All Pods are Running**
     ```sh
     minikube kubectl -- get pods
     ```
 
 9. **Access the Flask App Service**
+    Once all pods are running, you can access the Flask app service:
     ```sh
     minikube service flask-app-service
     ```
@@ -72,4 +73,4 @@ Make sure you have the following applications installed:
 
 Once all the services are up and running, you can access the Flask app through the URL provided by Minikube.
 
-##
+## 
