@@ -1,6 +1,6 @@
 # Anime-Scraper
 
-The project is designed for scraping anime from MAL with a simple UI.
+The project is designed for scraping anime from MAL with a simple UI. (Student Project)
 
 ## Prerequisites
 
