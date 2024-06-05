@@ -8,6 +8,7 @@ The project is designed for scraping anime from MAL with a simple UI.
     ```sh
     git clone https://github.com/GitaraMariusz/Anime-Scraper-Kubernetes.git
     ```
+    **Note:** After cloning, it is recommended to delete all GitHub-related files as they can disturb the workflow of the application.
 
 2. **Log in to Docker**
     ```sh
@@ -40,6 +41,7 @@ The project is designed for scraping anime from MAL with a simple UI.
     ```
 
 7. **Apply the YAML Files**
+    Before applying the YAML files, make sure to change 'username' to your Docker Hub username in `flask-app-deployment.yaml` and `scraper-deployment.yaml`.
     ```sh
     minikube kubectl -- apply -f scraper-service.yaml
     minikube kubectl -- apply -f flask-app-deployment.yaml
@@ -63,7 +65,3 @@ The project is designed for scraping anime from MAL with a simple UI.
 Once all the services are up and running, you can access the Flask app through the URL provided by Minikube.
 
 ## 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
