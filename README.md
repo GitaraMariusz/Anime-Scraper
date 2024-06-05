@@ -50,7 +50,7 @@ The project is designed for scraping anime from MAL with a simple UI.
     minikube kubectl -- apply -f redis-service.yaml
     ```
 
-8. **Get URL of the Pods**
+8. **Check status of the Pods**
     ```sh
     minikube kubectl -- get pods
     ```
